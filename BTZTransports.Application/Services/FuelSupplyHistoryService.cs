@@ -112,6 +112,11 @@ namespace BTZTransports.Application.Services
 
         public void Insert(FuelSupplyHistory fuelSupplyHistory)
         {
+            if (fuelSupplyHistory.DriverId == 0 || fuelSupplyHistory.VehicleId == 0)
+            {
+                throw new Exception("Associate a valid driver/vehicle");
+            }
+
             Vehicle vehicle = _vehicleService.GetById(fuelSupplyHistory.VehicleId);
 
             if (fuelSupplyHistory.FuelType != vehicle.FuelType)
