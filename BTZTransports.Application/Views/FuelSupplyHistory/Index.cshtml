@@ -1,0 +1,62 @@
+﻿@model IEnumerable<BTZTransports.Application.Models.FuelSupplyHistory>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FuelType)
+            </th>
+            <th>
+                @Html.DisplayName("Driver")
+            </th>
+            <th>
+                @Html.DisplayName("Vehicle")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuantitySupplied)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalValueSupplied)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FuelType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Driver.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vehicle.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuantitySupplied)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalValueSupplied)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

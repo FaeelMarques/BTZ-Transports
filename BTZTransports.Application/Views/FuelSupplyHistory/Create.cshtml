@@ -1,0 +1,59 @@
+﻿@model BTZTransports.Application.Models.FuelSupplyHistory
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>FuelSupplyHistory</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        @if(ViewBag.ErrorMessage != null)
+        {
+            <span class="text-danger">@ViewBag.ErrorMessage</span>
+        }
+
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FuelType" class="control-label"></label>
+                @Html.DropDownListFor(model => model.FuelType, new SelectList(ViewBag.fuelTypeSelectList, "Value", "Text"), new { @Class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Driver" class="control-label"></label>
+                @Html.DropDownListFor(model => model.DriverId, new SelectList(ViewBag.driversSelectList, "Value", "Text"), new { @Class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Vehicle" class="control-label"></label>
+                @Html.DropDownListFor(model => model.VehicleId, new SelectList(ViewBag.vehiclesSelectList, "Value", "Text"), new { @Class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label asp-for="QuantitySupplied" class="control-label"></label>
+                <input asp-for="QuantitySupplied" class="form-control" />
+                <span asp-validation-for="QuantitySupplied" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
